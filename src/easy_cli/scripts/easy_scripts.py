@@ -22,7 +22,7 @@ def generate():
 
 @cli.command("scaffold")
 def scaffold():
-    cookiecutter("/Users/maclean/Developer/projects/python/easy-cli/src/easy_cli")
+    cookiecutter("https://github.com/Josephmaclean/easy-scaffold.git")
 
 
 @generate.command("model")
