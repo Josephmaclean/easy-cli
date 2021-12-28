@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="Easy-Cli",
+    name="Flask-Easy-Cli",
     find_packages=find_packages(),
     install_requires=[
         "Flask-Easy>=0.0.1",
