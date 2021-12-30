@@ -21,8 +21,22 @@ def generate():
 
 
 @cli.command("scaffold")
-def scaffold():
-    cookiecutter("https://github.com/Josephmaclean/easy-scaffold.git")
+@click.argument("output_dir", required=False)
+def scaffold(output_dir: str):
+
+    if output_dir is None:
+        val = click.prompt("Project name")
+        cookiecutter("https://github.com/Josephmaclean/easy-scaffold.git",
+                     extra_context={
+                         "_project_name": val
+                     })
+    else:
+        cookiecutter("https://github.com/Josephmaclean/easy-scaffold.git",
+                     output_dir=output_dir,
+                     extra_context={
+                         "_project_name": "My Awesome App",
+                         "_remove_parent": True
+                     })
 
 
 @generate.command("model")
@@ -60,7 +74,8 @@ def get_config():
     except AttributeError:
         click.echo(
             click.style(
-                "Could not import <class Config> from config.py. Please make sure the class 'Config' exists in config.py",
+                "Could not import <class Config> from config.py. "
+                "Please make sure the class 'Config' exists in config.py",
                 fg="red"
             )
         )
